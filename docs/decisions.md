@@ -25,3 +25,8 @@ community.general.proxmox устарел, переехал в community.proxmox
 перенес lxc.yml на community.proxmox.proxmox
 более правильно задал путь к secrets.yml в vps,vm,lxc.yml
 ansible-lint по всем плейбукам пробежал, кайф
+
+## 2026.05.05
+
+ввёл vps в хельсинках (senko-hel) в основную vlan10 подсеть, l2 туннель (amneziawg, vxlan)
+обновил README.md и inventory на текущее состояние

@@ -1,77 +1,66 @@
 # homelab
 
-self hosted everything (almost)  
+personal infra
 stack: proxmox · ansible · nginx · docker
 
-## hardware node1
+---
+
+## hardware node0
 
 | component | spec |
-|---|---|
-| CPU | AMD Ryzen 5 5500 |
-| RAM | 32GB DDR4 3200MHz |
-| Storage | 512GB Nvme + 4TB HDD |
-| Network | 1GbE → router, 
-|   |   2.5GbE → main PC |
-| Hypervisor | Proxmox |
+| --- | --- |
+| cpu | amd ryzen 5 5500 |
+| ram | 32gb DDR4 3200mhz |
+| storage | 512gb nvme + 4tb hdd |
 
-## network
+---
 
-| device | ip | func |
-|---|---|---|
-| router | 10.10.10.1 | gateway, dhcp, vlans |
-| pve | 10.10.10.2 | hypervisor |
-| dhcp clients | 10.10.10.1/24 | other devices |
+## network topology
 
-vlan10 `10.10.0.0/16` — all devices and servers  
-vlan20 `10.20.1.0/24` — neighbors  
-vlan30 `10.30.1.0/24` — IoT
+| segment | subnet | does |
+| --- | --- | --- |
+| vlan10 | 10.10.0.0/16 | servers, infra, trusted devices |
+| vlan20 | 10.20.1.0/24 | neighbors |
+| vlan30 | 10.30.1.0/24 | iot |
+
+ip formula: proxmox id `abc` → `10.10.a.bc`  
+
+---
 
 ## services
 
-ip formula: proxmox ID `ABC` → `10.10.A.BC`  
-IDs divisible by 100 are reserved (network addresses).
+### core
 
-### 1XX — core
+| hostname | type | ip | does |
+| --- | --- | --- | --- |
+| pbs | lxc | 10.10.1.1 | proxmox backup server |
+| adguard | lxc | 10.10.1.2 | dns server |
+| 3x-ui | vm | 10.10.1.4 | vpn to lan |
+| docker-core | vm | 10.10.1.5 | main docker host |
+| bridgeSenkoHel | vm | 10.10.1.6 | bridge to senko-hel |
+| senko-hel | vps | 10.10.1.7 | vps in fi, helsinki |
 
-| service | type | ID | ip |
-|---|---|---|---|
-| pbs | lxc | 101 | 10.10.1.1 |
-| adguard | lxc | 102 | 10.10.1.2 |
-| 3x-ui | vm | 104 | 10.10.1.4 |
-| docker-core | vm | 105 | 10.10.1.5 |
+### prod
 
-### 2XX — prod
+| hostname | type | ip | does |
+| --- | --- | --- | --- |
+| torrent | lxc | 10.10.2.2 | qbittorrent |
 
-| service | type | ID | ip |
-|---|---|---|---|
-| torrent | lxc | 202 | 10.10.2.2 |
-
-### legacy
-
-| service | type | ID | ip |
-|---|---|---|---|
-| obsidian-sync | vm | 112 | 10.10.100.12 |
-| monitoring | lxc | 404 | 10.10.4.4 |
-| wings (pelican) | lxc | 403 | 10.10.4.3 |
+---
 
 ## structure
 
-```
+``` structure
 homelab/
-  docs/
-    proxmox/
-      main_template_spec.md
-      lxc_template_spec.md
   ansible/
-    create/
-    group_vars/
-    init/
-    inventories/
-    services/
-    ansible.cfg
-    example_secrets.yml
-    secrets.yml
-  decisions.md
-  Makefile
-  README.md
+    create/ # provision new vm/lxc/vps
+    init/ # bootstrap and update any host
+    services/ # deploy specific services
+  docs/
+    proxmox/ # template specs
+    decisions.md # why things are the way they are
 ```
+
+---
+
+decisions and history --> [decisions.md](docs/decisions.md)
