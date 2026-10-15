@@ -28,5 +28,13 @@ ansible-lint по всем плейбукам пробежал, кайф
 
 ## 2026.05.05
 
-ввёл vps в хельсинках (senko-hel) в основную vlan10 подсеть, l2 туннель (amneziawg, vxlan)
+ввёл vps в хельсинках (senko-hel) в основную vlan10 подсеть, l2 туннель ("пропуск в клирнет", vxlan)
 обновил README.md и inventory на текущее состояние
+
+## 2026.10.15
+
+доки отстали от реальности, прошёлся по pve и всем машинам и сверил
+README переписан под текущее состояние: chr как vm 100, nginx, wings, test-mc, legacy и выключенные гости
+новые доки: proxmox/host.md, proxmox/guests.md, network/{overview,chr,ap}.md, services/docker.md, services/senko-hel.md
+bridgeSenkoHel больше не нужен, туннель до senko-hel теперь "пропуск в клирнет" в контейнере на chr + vxlan в br0
+vlan40 — отдельный wifi с выходом в "клирнет"
