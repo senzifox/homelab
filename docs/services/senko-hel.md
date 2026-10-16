@@ -1,7 +1,8 @@
 # senko-hel
 
 vps in fi, helsinki, debian 13 (trixie), 2 cores, 4g ram, 79g disk  
-public ip in [inventories/private.ini](../../ansible/inventories/example_private.ini), 10.10.1.7 in lan  
+10.10.1.7 in lan, managed only from lan  
+legacy: public ip in `inventories/private.ini` (see [example_private.ini](../../ansible/inventories/example_private.ini)), unused now, may return  
 how it joins lan --> [network/overview.md](../network/overview.md#senko-hel-l2-tunnel)
 
 ## system

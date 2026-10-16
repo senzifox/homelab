@@ -38,3 +38,8 @@ README переписан под текущее состояние: chr как v
 новые доки: proxmox/host.md, proxmox/guests.md, network/{overview,chr,ap}.md, services/docker.md, services/senko-hel.md
 bridgeSenkoHel больше не нужен, туннель до senko-hel теперь "пропуск в клирнет" в контейнере на chr + vxlan в br0
 vlan40 — отдельный wifi с выходом в "клирнет"
+
+## 2026.10.16
+
+private.ini больше не подключён в ansible.cfg: все машины в локальной сети, временно не используется, будущие машины по плану также сразу вносить в общую сеть
+example_private.ini и строка в .gitignore оставлены как легаси, если снова понадобятся хосты по белым ip то верну его в inventory
