@@ -56,7 +56,6 @@ cluster firewall disabled
 | --- | --- | --- | --- |
 | smb | `HDD_Storage` | `/mnt/pve/HDD/` | senzi |
 | smb | `media` | `/media/backup` | shareuser |
-| nfs | — | `/mnt/pve/HDD` | 192.168.1.102, legacy |
 
 ## running on host
 
@@ -67,7 +66,6 @@ cluster firewall disabled
 | 9633 | smartctl-exporter |
 | 5201 | iperf3 |
 | 139, 445 | samba |
-| 2049 | nfs |
 
 ## pve users
 
