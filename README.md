@@ -62,8 +62,6 @@ all guests run debian 13 (trixie), ssh on port 5542
 | id | hostname | type | ip | does |
 | --- | --- | --- | --- | --- |
 | 202 | torrent | lxc | 10.10.2.2 | qbittorrent |
-| 203 | test-mc | vm | 10.10.2.3 | minecraft (itzg), legacy |
-| 204 | wings | vm | 10.10.2.4 | pelican wings, legacy |
 
 ### legacy
 
@@ -72,15 +70,24 @@ all guests run debian 13 (trixie), ssh on port 5542
 | 108 | gateway | lxc | 10.10.100.8 | nginx proxy manager |
 | 112 | obsidian-sync | vm | 10.10.100.12 | couchdb for obsidian livesync |
 
-### stopped
+### templates
+
+| id | hostname | type | ip | does |
+| --- | --- | --- | --- | --- |
+| 9000 | debian-13-template | vm | — | template for `create/vm.yml` |
+
+### to be removed
+
+not maintained, not documented further
 
 | id | hostname | type | ip | does |
 | --- | --- | --- | --- | --- |
 | 106 | bridgeSenkoHel | vm | 10.10.1.6 | legacy tunnel |
+| 203 | test-mc | vm | 10.10.2.3 | minecraft (itzg) |
+| 204 | wings | vm | 10.10.2.4 | pelican wings |
 | 404 | monitoring | lxc | 10.10.4.4 | — |
 | 405 | proxy-p2g | lxc | 10.10.4.5 | — |
 | 621 | 621 | vm | 10.10.6.21 | — |
-| 9000 | debian-13-template | vm | — | template for `create/vm.yml` |
 
 guest resources --> [docs/proxmox/guests.md](docs/proxmox/guests.md)  
 docker stacks --> [docs/services/docker.md](docs/services/docker.md)  
